@@ -1,3 +1,9 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .form-bg-color{
     background-color: #1e1e1e;
 }
@@ -13,3 +19,17 @@
 .page-background{
     background-image: url(../img/stadium_background.webp);
 }
+
+.badge-bg{
+        background-image: url('../img/badge_gold.webp');
+        background-size: cover;
+        background-position: center; 
+        background-repeat: no-repeat;
+      
+        
+}
+
+.text-vs{
+    font-size: 8px;
+}
+      
