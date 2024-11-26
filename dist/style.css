@@ -1,0 +1,15 @@
+.form-bg-color{
+    background-color: #1e1e1e;
+}
+.input-colors{
+    background-color: #2b2a2a;
+    border: solid 1px #696969;
+}
+
+.form-height{
+    height: 90%;
+}
+
+.page-background{
+    background-image: url(../img/stadium_background.webp);
+}
