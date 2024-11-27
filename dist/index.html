@@ -7,32 +7,16 @@
     <link rel="stylesheet" href="output.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    
-<section class="page-background bg-cover bg-center bg-no-repeat w-full"> 
-<div class=" h-full grid grid-cols-12 gap-8 py-8 mx-auto max-w-7xl">
-<div class="relative col-span-9 h-fit bg-blue-600 max-w-7xl">
+<body class="page-background">
+
+<section class="background-gradient bg-cover bg-center bg-no-repeat w-full "> 
+<div class=" h-full grid grid-cols-12 gap-8 py-8 mx-auto max-w-7xl ">
+<div class=" relative col-span-9 h-fit  max-w-7xl ">
     <img src="../img/soccer field outline.svg" alt="soccer field " class="w-full aspect-auto ">
     <div id="players-cards" class="absolute right-0 top-0 w-full h-full grid grid-cols-5 grid-rows-4 gap-5 px-24">
         <div  id="right-wing" class=" relative right-6 col-start-5 col-end-5 row-start-1 row end-1 badge-bg flex flex-col items-center justify-end pb-5 ">
 
-            <div class="  translate-y-4 w-3/5 aspect-auto">
-                <img src="../img/playerme.png" alt="">
-            </div>
-            <h2 class="z-10 font-medium text-sm">Ilyass Marghine</h2>
-            <div class="w-4/5 h-fit flex flex-row gap-1">
-                <span class="text-vs font-medium text-center"><p class="text-center">PAC</p> <p class="text-center">99</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">SHO</p> <p class="text-center">99</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">PAS</p> <p class="text-center">99</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">DRI</p> <p class="text-center">99</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">DEF</p> <p class="text-center">99</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">PHY</p> <p class="text-center">99</p></span>
-            </div>
-
-            <div class="flex flex-row gap-4">
-                <img class="h-4 aspect-auto " src="https://cdn.sofifa.net/flags/ar.png" alt="">
-                <img class="h-4 aspect-auto" src="https://cdn.sofifa.net/meta/team/239235/120.png" alt="">
-            </div>
+            
         </div>
 
 
@@ -237,17 +221,17 @@
         </div>
     </div>
 </div>
-<section class="form-bg-color form-height col-span-3 px-6 py-8 max-h-screen overflow-y-scroll text-white rounded-lg">
+<section class="form-bg-color form-height col-span-3 px-6 py-8 overflow-y-scroll text-white rounded-lg">
     <form action="" class="flex flex-col gap-4">
         
         <div id="name-input" class="flex flex-col gap-1">
             <label for="player-name" class="text-base font-medium">Full Name</label>
-            <input  type="text" id="player-name" class="input-colors input-colors rounded py-2 px-3 ">
+            <input  type="text" id="player-name-input" class="input-colors input-colors rounded py-2 px-3 ">
         </div>
         
         <div id="photo-input" class="flex flex-col gap-1">
             <label for="player-photo" class="text-base font-medium">Photo</label>
-            <input type="file" id="player-photo" class=" input-colors rounded py-2 px-3 bg-white" accept="image/*">
+            <input type="text" id="player-photo" class=" input-colors rounded py-2 px-3">
         </div>
 
         <div id="position-input" class="flex flex-col gap-1 w-xl">
@@ -293,76 +277,254 @@
         </div>
 
 
-        <div id="players-only-inputs" class="hidden">
+        <div id="players-only-inputs" class="hidden flex flex-col gap-4">
 
-        <div id="pace-input" class="flex flex-col gap-1">
+            <div class=" max-w-full flex flex-row gap-2" >
+
+        <div id="pace-input" class="w-1/2 flex flex-col gap-1">
             <label for="pace" class="text-base font-medium">Pace</label>
             <input type="number" id="pace" class="input-colors rounded py-2 px-3">
         </div>
         
-        <div id="shooting-input" class="flex flex-col gap-1">
+        <div id="shooting-input" class="w-1/2 flex flex-col gap-1">
             <label for="shooting" class="text-base font-medium">Shooting</label>
             <input type="number" id="shooting" class="input-colors rounded py-2 px-3">
         </div>
-        
-        <div id="passing-input" class="flex flex-col gap-1">
+    </div>
+    <div class=" max-w-full flex flex-row gap-2" >
+
+        <div id="passing-input" class="w-1/2 flex flex-col gap-1">
             <label for="passing" class="text-base font-medium">Passing</label>
             <input type="number" id="passing" class="input-colors rounded py-2 px-3">
         </div>
         
-        <div id="dribbling-input" class="flex flex-col gap-1">
+        <div id="dribbling-input" class="w-1/2 flex flex-col gap-1">
             <label for="dribbling" class="text-base font-medium">Dribbling</label>
             <input type="number" id="dribbling" class="input-colors rounded py-2 px-3">
         </div>
-        
-        <div id="defending-input" class="flex flex-col gap-1">
+    </div>
+    <div class=" max-w-full flex flex-row gap-2" >
+        <div id="defending-input" class="w-1/2 flex flex-col gap-1">
             <label for="defending" class="text-base font-medium">Defending</label>
             <input type="number" id="defending" class="input-colors rounded py-2 px-3">
         </div>
         
-        <div id="physical-input" class="flex flex-col gap-1">
+        <div id="physical-input" class="w-1/2 flex flex-col gap-1">
             <label for="physical" class="text-base font-medium">Physical</label>
             <input type="number" id="physical" class="input-colors rounded py-2 px-3">
         </div>
     </div>
+    </div>
 
-    <div id="goalkeeper-only-inputs" class="hidden">
+    <div id="goalkeeper-only-inputs" class="hidden flex flex-col gap-4">
+        <div class=" max-w-full flex flex-row gap-2" >
 
-        <div id="diving-input" class="flex flex-col gap-1">
+        <div id="diving-input" class="w-1/2 flex flex-col gap-1">
             <label for="diving" class="text-base font-medium">Diving</label>
             <input type="number" id="diving" class="input-colors rounded py-2 px-3">
         </div>
         
-        <div id="handling-input" class="flex flex-col gap-1">
+        <div id="handling-input" class="w-1/2 flex flex-col gap-1">
             <label for="handling" class="text-base font-medium">Handling</label>
             <input type="number" id="handling" class="input-colors rounded py-2 px-3">
         </div>
-        
-        <div id="kicking-input" class="flex flex-col gap-1">
+
+        </div>
+
+        <div class=" max-w-full flex flex-row gap-2" >
+            
+        <div id="kicking-input" class="w-1/2 flex flex-col gap-1">
             <label for="kicking" class="text-base font-medium">Kicking</label>
             <input type="number" id="kicking" class="input-colors rounded py-2 px-3">
         </div>
         
-        <div id="reflexes-input" class="flex flex-col gap-1">
+        <div id="reflexes-input" class="w-1/2 flex flex-col gap-1">
             <label for="reflexes" class="text-base font-medium">Reflexes</label>
             <input type="number" id="reflexes" class="input-colors rounded py-2 px-3">
         </div>
-        
-        <div id="speed-input" class="flex flex-col gap-1">
+
+        </div>
+
+        <div class=" max-w-full flex flex-row gap-2" >
+        <div id="speed-input" class=" w-1/2 flex flex-col gap-1">
             <label for="speed" class="text-base font-medium">Speed</label>
             <input type="number" id="speed" class="input-colors rounded py-2 px-3">
         </div>
         
-        <div id="positioning-input" class="flex flex-col gap-1">
+        <div id="positioning-input" class="w-1/2 flex flex-col gap-1">
             <label for="positioning" class="text-base font-medium">Positioning</label>
             <input type="number" id="positioning" class="input-colors rounded py-2 px-3">
+        </div>  
+
         </div>
+        
+
+        
 
     </div>
-
+<button type="button" id="add-player-btn" class=" bg-violet-700 text-white w-full px-8 py-4 rounded ">add player</button>
         
     </form>
 </section>
+
+<!-- bench replacement section -->
+
+ <section class=" bg-blue-800 col-span-9 h-fit  max-w-7xl  grid grid-cols-5  gap-5 px-24">
+
+    <div  class=" col-span-1 badge-bg flex flex-col items-center justify-end pb-5">
+        <div class="  translate-y-6 w-3/5 aspect-auto">
+            <img src="https://cdn.sofifa.net/players/205/452/25_120.png" alt="">
+        </div>
+        <h2 class="z-10 font-medium text-sm translate-y-2">Ilyass Marghine</h2>
+        <div class="w-4/5 h-fit flex flex-row justify-center gap-1 translate-y-2">
+            <span class="text-vs font-medium text-center"><p class="text-center">PAC</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">SHO</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">PAS</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">DRI</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">DEF</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">PHY</p> <p class="text-center">99</p></span>
+        </div>
+
+        <div class="flex flex-row gap-4 translate-y-2">
+            <img class="h-4 aspect-auto " src="https://cdn.sofifa.net/flags/ar.png" alt="">
+            <img class="h-4 aspect-auto" src="https://cdn.sofifa.net/meta/team/239235/120.png" alt="">
+        </div>
+    </div>
+    <div id="right-back" class=" col-span-1 badge-bg flex flex-col items-center justify-end pb-5">
+        <div class="  translate-y-6 w-3/5 aspect-auto">
+            <img src="https://cdn.sofifa.net/players/205/452/25_120.png" alt="">
+        </div>
+        <h2 class="z-10 font-medium text-sm translate-y-2">Ilyass Marghine</h2>
+        <div class="w-4/5 h-fit flex flex-row justify-center gap-1 translate-y-2">
+            <span class="text-vs font-medium text-center"><p class="text-center">PAC</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">SHO</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">PAS</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">DRI</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">DEF</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">PHY</p> <p class="text-center">99</p></span>
+        </div>
+
+        <div class="flex flex-row gap-4 translate-y-2">
+            <img class="h-4 aspect-auto " src="https://cdn.sofifa.net/flags/ar.png" alt="">
+            <img class="h-4 aspect-auto" src="https://cdn.sofifa.net/meta/team/239235/120.png" alt="">
+        </div>
+    </div>
+    <div id="right-back" class=" col-span-1 badge-bg flex flex-col items-center justify-end pb-5">
+        <div class="  translate-y-6 w-3/5 aspect-auto">
+            <img src="https://cdn.sofifa.net/players/205/452/25_120.png" alt="">
+        </div>
+        <h2 class="z-10 font-medium text-sm translate-y-2">Ilyass Marghine</h2>
+        <div class="w-4/5 h-fit flex flex-row justify-center gap-1 translate-y-2">
+            <span class="text-vs font-medium text-center"><p class="text-center">PAC</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">SHO</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">PAS</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">DRI</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">DEF</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">PHY</p> <p class="text-center">99</p></span>
+        </div>
+
+        <div class="flex flex-row gap-4 translate-y-2">
+            <img class="h-4 aspect-auto " src="https://cdn.sofifa.net/flags/ar.png" alt="">
+            <img class="h-4 aspect-auto" src="https://cdn.sofifa.net/meta/team/239235/120.png" alt="">
+        </div>
+    </div>
+    <div id="right-back" class=" col-span-1 badge-bg flex flex-col items-center justify-end pb-5">
+        <div class="  translate-y-6 w-3/5 aspect-auto">
+            <img src="https://cdn.sofifa.net/players/205/452/25_120.png" alt="">
+        </div>
+        <h2 class="z-10 font-medium text-sm translate-y-2">Ilyass Marghine</h2>
+        <div class="w-4/5 h-fit flex flex-row justify-center gap-1 translate-y-2">
+            <span class="text-vs font-medium text-center"><p class="text-center">PAC</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">SHO</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">PAS</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">DRI</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">DEF</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">PHY</p> <p class="text-center">99</p></span>
+        </div>
+
+        <div class="flex flex-row gap-4 translate-y-2">
+            <img class="h-4 aspect-auto " src="https://cdn.sofifa.net/flags/ar.png" alt="">
+            <img class="h-4 aspect-auto" src="https://cdn.sofifa.net/meta/team/239235/120.png" alt="">
+        </div>
+    </div>
+    <div id="right-back" class=" col-span-1 badge-bg flex flex-col items-center justify-end pb-5">
+        <div class="  translate-y-6 w-3/5 aspect-auto">
+            <img src="https://cdn.sofifa.net/players/205/452/25_120.png" alt="">
+        </div>
+        <h2 class="z-10 font-medium text-sm translate-y-2">Ilyass Marghine</h2>
+        <div class="w-4/5 h-fit flex flex-row justify-center gap-1 translate-y-2">
+            <span class="text-vs font-medium text-center"><p class="text-center">PAC</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">SHO</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">PAS</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">DRI</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">DEF</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">PHY</p> <p class="text-center">99</p></span>
+        </div>
+
+        <div class="flex flex-row gap-4 translate-y-2">
+            <img class="h-4 aspect-auto " src="https://cdn.sofifa.net/flags/ar.png" alt="">
+            <img class="h-4 aspect-auto" src="https://cdn.sofifa.net/meta/team/239235/120.png" alt="">
+        </div>
+    </div>
+    <div id="right-back" class=" col-span-1 badge-bg flex flex-col items-center justify-end pb-5">
+        <div class="  translate-y-6 w-3/5 aspect-auto">
+            <img src="https://cdn.sofifa.net/players/205/452/25_120.png" alt="">
+        </div>
+        <h2 class="z-10 font-medium text-sm translate-y-2">Ilyass Marghine</h2>
+        <div class="w-4/5 h-fit flex flex-row justify-center gap-1 translate-y-2">
+            <span class="text-vs font-medium text-center"><p class="text-center">PAC</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">SHO</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">PAS</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">DRI</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">DEF</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">PHY</p> <p class="text-center">99</p></span>
+        </div>
+
+        <div class="flex flex-row gap-4 translate-y-2">
+            <img class="h-4 aspect-auto " src="https://cdn.sofifa.net/flags/ar.png" alt="">
+            <img class="h-4 aspect-auto" src="https://cdn.sofifa.net/meta/team/239235/120.png" alt="">
+        </div>
+    </div>
+    <div id="right-back" class=" col-span-1 badge-bg flex flex-col items-center justify-end pb-5">
+        <div class="  translate-y-6 w-3/5 aspect-auto">
+            <img src="https://cdn.sofifa.net/players/205/452/25_120.png" alt="">
+        </div>
+        <h2 class="z-10 font-medium text-sm translate-y-2">Ilyass Marghine</h2>
+        <div class="w-4/5 h-fit flex flex-row justify-center gap-1 translate-y-2">
+            <span class="text-vs font-medium text-center"><p class="text-center">PAC</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">SHO</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">PAS</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">DRI</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">DEF</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">PHY</p> <p class="text-center">99</p></span>
+        </div>
+
+        <div class="flex flex-row gap-4 translate-y-2">
+            <img class="h-4 aspect-auto " src="https://cdn.sofifa.net/flags/ar.png" alt="">
+            <img class="h-4 aspect-auto" src="https://cdn.sofifa.net/meta/team/239235/120.png" alt="">
+        </div>
+    </div>
+    <div id="right-back" class=" col-span-1 badge-bg flex flex-col items-center justify-end pb-5">
+        <div class="  translate-y-6 w-3/5 aspect-auto">
+            <img src="https://cdn.sofifa.net/players/205/452/25_120.png" alt="">
+        </div>
+        <h2 class="z-10 font-medium text-sm translate-y-2">Ilyass Marghine</h2>
+        <div class="w-4/5 h-fit flex flex-row justify-center gap-1 translate-y-2">
+            <span class="text-vs font-medium text-center"><p class="text-center">PAC</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">SHO</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">PAS</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">DRI</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">DEF</p> <p class="text-center">99</p></span>
+            <span class="text-vs font-medium text-center"><p class="text-center">PHY</p> <p class="text-center">99</p></span>
+        </div>
+
+        <div class="flex flex-row gap-4 translate-y-2">
+            <img class="h-4 aspect-auto " src="https://cdn.sofifa.net/flags/ar.png" alt="">
+            <img class="h-4 aspect-auto" src="https://cdn.sofifa.net/meta/team/239235/120.png" alt="">
+        </div>
+    </div>
+    
+ </section>
 </div>
 </section>  
 
