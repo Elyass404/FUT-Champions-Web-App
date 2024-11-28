@@ -14,6 +14,7 @@
 
 .form-height{
     max-height: 730px;
+    height: fit-content;
 }
 
 .page-background{
