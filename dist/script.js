@@ -26,7 +26,7 @@ let positionAbbr = {
     cm: "center-middle-field",
     rw: "right-wing",
     lw: "left-wing",
-    st: "striker",
+    st: "striker"
 
 }
 
