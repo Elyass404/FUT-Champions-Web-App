@@ -30,20 +30,39 @@ let positionAbbr = {
 
 }
 
-let positionValability = {
-    gk: "free",
-    rb: "full",
-    lb: "free",
-    rcb: "free",
-    lcb: "free",
-    rm: "free",
-    lm: "free",
-    cm: "free",
-    rw: "free",
-    lw: "free",
-    st: "free"
-}
+let positionValability;
+let playersArr;
 
+if(JSON.parse(localStorage.getItem("positionValability"))){
+    positionValability = JSON.parse(localStorage.getItem("positionValability"));
+}else{
+    positionValability = {
+        gk: "free",
+        rb: "free",
+        lb: "free",
+        rcb: "free",
+        lcb: "free",
+        rm: "free",
+        lm: "free",
+        cm: "free",
+        rw: "free",
+        lw: "free",
+        st: "free"
+    }
+    localStorage.setItem("positionValability",JSON.stringify(positionValability))
+}
+// -----------Declaring position of the players in the field 
+let goalKeeperPos = document.getElementById("goal-keeper");
+let leftCenterBackPos = document.getElementById("left-center-back");
+let leftBackPos = document.getElementById("left-back");
+let rightCenterBackPos = document.getElementById("right-center-back");
+let rightBackPos = document.getElementById("right-back");
+let leftMiddleFieldPos = document.getElementById("left-middle-field");
+let centerMiddleFieldPos = document.getElementById("center-middle-field");
+let rightMiddleFieldPos = document.getElementById("right-middle-field");
+let leftWingPos = document.getElementById("left-wing");
+let strikerPos = document.getElementById("striker");
+let rightWingPos = document.getElementById("right-wing");
 
 // ------------------Declaring input variables---------------------------
 
@@ -56,7 +75,7 @@ let rating = document.getElementById("rating");
 // ---------players only inputs---------
 let pace  = document.getElementById("pace");
 let shooting  = document.getElementById("shooting");
-let passign  = document.getElementById("passing");
+let passing  = document.getElementById("passing");
 let dribbling  = document.getElementById("dribbling");
 let defending  = document.getElementById("defending");
 let physical  = document.getElementById("physical");
@@ -71,6 +90,108 @@ let positioning = document.getElementById("positioning");
 let addPlayerBtn = document.getElementById("add-player-btn");
 
 
+document.addEventListener("DOMContentLoaded", ()=>{
+    if(JSON.parse(localStorage.getItem("players"))){
+        playersArr = JSON.parse(localStorage.getItem("players"));
+        console.log(playersArr);
+        window.alert("rah kaaaaaaaaaayn dak tableau alm3lem");
+
+        let gkOnField = playersArr.gkArray.findIndex(gk => gk.onField==true);
+        
+        
+        if(gkOnField > -1){
+            goalKeeperPos.innerHTML =`
+        <div class="absolute top-8 left-5 flex flex-col gap-0">
+                <div class="text-center text-xl font-bold">${playersArr.gkArray[gkOnField].rating}</div>
+                <div class="text-center text-xs font-medium">${playersArr.gkArray[gkOnField].position.toUpperCase()}</div>
+            </div>
+
+    <div class="translate-y-4 w-3/5 aspect-auto">
+                <img src="${playersArr.gkArray[gkOnField].photo}" alt="">
+            </div>
+            <h2 class="z-10 font-medium text-sm">${playersArr.gkArray[gkOnField].name}</h2>
+            <div class="w-4/5 h-fit flex flex-row gap-1">
+                <span class="text-vs font-medium text-center"><p class="text-center">DIV</p> <p class="text-center">${playersArr.gkArray[gkOnField].diving}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">HAN</p> <p class="text-center">${playersArr.gkArray[gkOnField].handling}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">KIC</p> <p class="text-center">${playersArr.gkArray[gkOnField].kicking}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">REF</p> <p class="text-center">${playersArr.gkArray[gkOnField].reflexes}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">SPD</p> <p class="text-center">${playersArr.gkArray[gkOnField].speed}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">POS</p> <p class="text-center">${playersArr.gkArray[gkOnField].positioning}</p></span>
+            </div>
+
+            <div class="flex flex-row gap-4">
+                <img class="h-4 aspect-auto " src="${flags[playersArr.gkArray[gkOnField].nationality]}" alt="">
+                <img class="h-4 aspect-auto" src="${clubs[playersArr.gkArray[gkOnField].club]}" alt="">
+            </div>
+        `
+        }
+
+        let positions = {
+            rb: { element: rightBackPos, array: playersArr.rbArray },
+            rcb: { element: rightCenterBackPos, array: playersArr.rcbArray },
+            lcb: { element: leftCenterBackPos, array: playersArr.lcbArray },
+            lb: { element: leftBackPos, array: playersArr.lbArray },
+            rm: { element: rightMiddleFieldPos, array: playersArr.rmArray },
+            cm: { element: centerMiddleFieldPos, array: playersArr.cmArray },
+            lm: { element: leftMiddleFieldPos, array: playersArr.lmArray },
+            rw: { element: rightWingPos, array: playersArr.rwArray },
+            st: { element: strikerPos, array: playersArr.stArray },
+            lw: { element: leftWingPos, array: playersArr.lwArray }
+        };
+
+        for (let position in positions) {
+            // let { element, array } = positions[position];
+            let element = positions[position].element;
+            let array = positions[position].array;
+            let playerIndex = array.findIndex(player => player.onField == true);
+            if (playerIndex > -1) {
+                element.innerHTML =`
+        <div class="absolute top-8 left-5 flex flex-col gap-0">
+                <div class="text-center text-xl font-bold">${array[playerIndex].rating}</div>
+                <div class="text-center text-xs font-medium">${array[playerIndex].position.toUpperCase()}</div>
+            </div>
+
+    <div class="translate-y-4 w-3/5 aspect-auto">
+                <img src="${array[playerIndex].photo}" alt="">
+            </div>
+            <h2 class="z-10 font-medium text-sm">${array[playerIndex].name}</h2>
+            <div class="w-4/5 h-fit flex flex-row gap-1">
+                <span class="text-vs font-medium text-center"><p class="text-center">PAC</p> <p class="text-center">${array[playerIndex].pace}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">SHO</p> <p class="text-center">${array[playerIndex].shooting}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">PAS</p> <p class="text-center">${array[playerIndex].passing}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">DRI</p> <p class="text-center">${array[playerIndex].dribbling}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">DEF</p> <p class="text-center">${array[playerIndex].defending}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">PHY</p> <p class="text-center">${array[playerIndex].physical}</p></span>
+            </div>
+
+            <div class="flex flex-row gap-4">
+                <img class="h-4 aspect-auto " src="${flags[array[playerIndex].nationality]}" alt="">
+                <img class="h-4 aspect-auto" src="${clubs[array[playerIndex].club]}" alt="">
+            </div>
+        `
+            }
+        }
+ 
+    }else{
+        window.alert("rah makaynch dak tableau alm3lem");
+        
+        let gkArray = [];
+        let rbArray = [];
+        let rcbArray = [];
+        let lcbArray = [];
+        let lbArray = [];
+        let rmArray = [];
+        let cmArray = [];
+        let lmArray = [];
+        let rwArray = [];
+        let stArray = [];
+        let lwArray = [];
+        playersArr = {gkArray,rbArray,rcbArray,lcbArray,lbArray,rmArray,cmArray,lmArray,rwArray,stArray,lwArray};
+         //tester hadi chof wach khdama
+        localStorage.setItem("players",JSON.stringify( playersArr));
+    };
+
+});
 
 // ---------Add event listeners to elements inside the document----------
 addPlayerBtn.addEventListener("click",()=>{
@@ -89,14 +210,14 @@ addPlayerBtn.addEventListener("click",()=>{
     `
     if(position.value == "gk"){
 
-        playerCard=`
+        playerCard+=`
         <div class="w-4/5 h-fit flex flex-row gap-1">
-                <span class="text-vs font-medium text-center"><p class="text-center">PAC</p> <p class="text-center">${diving.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">SHO</p> <p class="text-center">${handling.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">PAS</p> <p class="text-center">${kicking.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">DRI</p> <p class="text-center">${reflexes.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">DEF</p> <p class="text-center">${speed.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">PHY</p> <p class="text-center">${positioning.value}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">DIV</p> <p class="text-center">${diving.value}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">HAN</p> <p class="text-center">${handling.value}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">KIC</p> <p class="text-center">${kicking.value}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">REF</p> <p class="text-center">${reflexes.value}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">SPD</p> <p class="text-center">${speed.value}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">POS</p> <p class="text-center">${positioning.value}</p></span>
             </div>
 
             <div class="flex flex-row gap-4">
@@ -109,7 +230,7 @@ addPlayerBtn.addEventListener("click",()=>{
         <div class="w-4/5 h-fit flex flex-row gap-1">
                 <span class="text-vs font-medium text-center"><p class="text-center">PAC</p> <p class="text-center">${pace.value}</p></span>
                 <span class="text-vs font-medium text-center"><p class="text-center">SHO</p> <p class="text-center">${shooting.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">PAS</p> <p class="text-center">${passign.value}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">PAS</p> <p class="text-center">${passing.value}</p></span>
                 <span class="text-vs font-medium text-center"><p class="text-center">DRI</p> <p class="text-center">${dribbling.value}</p></span>
                 <span class="text-vs font-medium text-center"><p class="text-center">DEF</p> <p class="text-center">${defending.value}</p></span>
                 <span class="text-vs font-medium text-center"><p class="text-center">PHY</p> <p class="text-center">${physical.value}</p></span>
@@ -126,12 +247,13 @@ addPlayerBtn.addEventListener("click",()=>{
 
     let positionValue = position.value;
     let placeOfPlayer= document.getElementById(`${positionAbbr[positionValue]}`);
-
+    let onField = false;
     if(positionValability[position.value] == "free"){
         placeOfPlayer.innerHTML = playerCard;
         positionValability[position.value] = "full";
+        onField = true;
     }else{
-
+    onField = false;    
     let benchSection = document.getElementById("bench-section");
     let benchCard = document.createElement("div");
     benchCard.classList.add("relative", "col-span-1", "badge-bg", "flex", "flex-col", "items-center", "justify-end", "pb-5");
@@ -151,12 +273,12 @@ addPlayerBtn.addEventListener("click",()=>{
 
         benchCard.innerHTML+=`
         <div class="w-4/5 h-fit flex flex-row justify-center gap-1 translate-y-2">
-                <span class="text-vs font-medium text-center"><p class="text-center">PAC</p> <p class="text-center">${diving.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">SHO</p> <p class="text-center">${handling.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">PAS</p> <p class="text-center">${kicking.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">DRI</p> <p class="text-center">${reflexes.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">DEF</p> <p class="text-center">${speed.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">PHY</p> <p class="text-center">${positioning.value}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">HAN</p> <p class="text-center">${diving.value}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">HAN</p> <p class="text-center">${handling.value}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">KIC</p> <p class="text-center">${kicking.value}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">REF</p> <p class="text-center">${reflexes.value}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">SPD</p> <p class="text-center">${speed.value}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">POS</p> <p class="text-center">${positioning.value}</p></span>
             </div>
 
             <div class="flex flex-row gap-4 translate-y-2">
@@ -169,7 +291,7 @@ addPlayerBtn.addEventListener("click",()=>{
         <div class="w-4/5 h-fit flex flex-row justify-center gap-1 translate-y-2">
                 <span class="text-vs font-medium text-center"><p class="text-center">PAC</p> <p class="text-center">${pace.value}</p></span>
                 <span class="text-vs font-medium text-center"><p class="text-center">SHO</p> <p class="text-center">${shooting.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">PAS</p> <p class="text-center">${passign.value}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">PAS</p> <p class="text-center">${passing.value}</p></span>
                 <span class="text-vs font-medium text-center"><p class="text-center">DRI</p> <p class="text-center">${dribbling.value}</p></span>
                 <span class="text-vs font-medium text-center"><p class="text-center">DEF</p> <p class="text-center">${defending.value}</p></span>
                 <span class="text-vs font-medium text-center"><p class="text-center">PHY</p> <p class="text-center">${physical.value}</p></span>
@@ -187,6 +309,47 @@ addPlayerBtn.addEventListener("click",()=>{
 
     
 }
+
+let playerObj = {
+    name : nameInput.value, 
+    photo : photoInput.value,
+    position : position.value,
+    nationality : nationality.value,
+    club : club.value,
+    rating : rating.value
+}
+
+if (position.value == "gk"){
+    playerObj = {...playerObj,
+        diving : diving.value,
+        handling : handling.value,
+        kicking : kicking.value,
+        reflexes : reflexes.value,
+        speed : speed.value,
+        position : position.value,
+        onField 
+    } 
+    
+}else{
+    playerObj = {...playerObj,
+        pace : pace.value,
+        shooting : shooting.value,
+        passing : passing.value,
+        dribbling : dribbling.value,
+        defending : defending.value,
+        physical : physical.value,
+        onField
+    }
+}
+console.log(playerObj);
+
+playersArr[playersArr[`${position.value}Array`].push(playerObj)];
+console.log(playersArr[`${position.value}Array`]);
+localStorage.setItem("players",JSON.stringify(playersArr));
+localStorage.setItem("positionValability",JSON.stringify(positionValability));
+
+
+
 
 
 
