@@ -304,61 +304,83 @@ document.addEventListener("DOMContentLoaded", ()=>{
 // ---------Add event listeners to elements inside the document----------
 addPlayerBtn.addEventListener("click",()=>{
     idInput.value = Date.now().toString();
+    playerInfo = {
+        id: idInput.value,
+        name: nameInput.value,
+        photo: photoInput.value,
+        position: position.value,
+        nationality: nationality.value,
+        club: club.value,
+        rating: rating.value,
+        pace: pace.value,
+        shooting: shooting.value,
+        passing: passing.value,
+        dribbling: dribbling.value,
+        defending: defending.value,
+        physical: physical.value,
+        diving: diving.value,
+        handling: handling.value,
+        kicking: kicking.value,
+        reflexes: reflexes.value,
+        speed: speed.value,
+        positioning: positioning.value
+    }
+    
     let playerCard= `
     <div class="absolute top-8 left-5 flex flex-col gap-0">
-                <div class="text-center text-xl font-bold">${rating.value}</div>
-                <div class="text-center text-xs font-medium">${position.value.toUpperCase()}</div>
+                <div class="text-center text-xl font-bold">${playerInfo.rating}</div>
+                <div class="text-center text-xs font-medium">${playerInfo.position.toUpperCase()}</div>
             </div>
 
     <div class="translate-y-4 w-3/5 aspect-auto">
-                <img src="${photoInput.value}" alt="">
+                <img src="${playerInfo.photo}" alt="">
             </div>
-            <h2 class="z-10 font-medium text-sm">${nameInput.value}</h2>
+            <h2 class="z-10 font-medium text-sm">${playerInfo.name}</h2>
             
     `
     if(position.value == "gk"){
 
         playerCard+=`
         <div class="w-4/5 h-fit flex flex-row gap-1">
-                <span class="text-vs font-medium text-center"><p class="text-center">DIV</p> <p class="text-center">${diving.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">HAN</p> <p class="text-center">${handling.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">KIC</p> <p class="text-center">${kicking.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">REF</p> <p class="text-center">${reflexes.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">SPD</p> <p class="text-center">${speed.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">POS</p> <p class="text-center">${positioning.value}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">DIV</p> <p class="text-center">${playerInfo.diving}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">HAN</p> <p class="text-center">${playerInfo.handling}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">KIC</p> <p class="text-center">${playerInfo.kicking}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">REF</p> <p class="text-center">${playerInfo.reflexes}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">SPD</p> <p class="text-center">${playerInfo.speed}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">POS</p> <p class="text-center">${playerInfo.positioning}</p></span>
             </div>
 
             <div class="flex flex-row gap-4">
-                <img class="h-4 aspect-auto " src="${flags[nationality.value]}" alt="">
-                <img class="h-4 aspect-auto" src="${clubs[club.value]}" alt="">
+                <img class="h-4 aspect-auto " src="${flags[playerInfo.nationality]}" alt="">
+                <img class="h-4 aspect-auto" src="${clubs[playerInfo.club]}" alt="">
             </div>
         `;
     }else{
         playerCard+=`
         <div class="w-4/5 h-fit flex flex-row gap-1">
-                <span class="text-vs font-medium text-center"><p class="text-center">PAC</p> <p class="text-center">${pace.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">SHO</p> <p class="text-center">${shooting.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">PAS</p> <p class="text-center">${passing.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">DRI</p> <p class="text-center">${dribbling.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">DEF</p> <p class="text-center">${defending.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">PHY</p> <p class="text-center">${physical.value}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">PAC</p> <p class="text-center">${playerInfo.pace}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">SHO</p> <p class="text-center">${playerInfo.shooting}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">PAS</p> <p class="text-center">${playerInfo.passing}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">DRI</p> <p class="text-center">${playerInfo.dribbling}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">DEF</p> <p class="text-center">${playerInfo.defending}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">PHY</p> <p class="text-center">${playerInfo.physical}</p></span>
             </div>
 
             <div class="flex flex-row gap-4">
-                <img class="h-4 aspect-auto " src="${flags[nationality.value]}" alt="">
-                <img class="h-4 aspect-auto" src="${clubs[club.value]}" alt="">
+                <img class="h-4 aspect-auto " src="${flags[playerInfo.nationality]}" alt="">
+                <img class="h-4 aspect-auto" src="${clubs[playerInfo.club]}" alt="">
             </div>
 
         `;
 
     }
 
-    let positionValue = position.value;
+    let positionValue = playerInfo.position;
     let placeOfPlayer= document.getElementById(`${positionAbbr[positionValue]}`);
     let onField = false;
-    if(positionValability[position.value] == "free"){
+    if(positionValability[playerInfo.position] == "free"){
         placeOfPlayer.innerHTML = playerCard;
-        positionValability[position.value] = "full";
+        positionValability[playerInfo.position] = "full";
         onField = true;
     }else{
     onField = false;    
@@ -367,86 +389,125 @@ addPlayerBtn.addEventListener("click",()=>{
     benchCard.classList.add("relative", "col-span-1", "badge-bg", "flex", "flex-col", "items-center", "justify-end", "pb-5");
     benchCard.innerHTML = `
 <div class="absolute top-8 left-5 flex flex-col gap-0">
-                <div class="text-center text-xl font-bold">${rating.value}</div>
-                <div class="text-center text-xs font-medium">${position.value.toUpperCase()}</div>
+                <div class="text-center text-xl font-bold">${playerInfo.rating}</div>
+                <div class="text-center text-xs font-medium">${playerInfo.position.toUpperCase()}</div>
             </div>
 
     <div class="translate-y-6 w-3/5 aspect-auto">
-                <img src="${photoInput.value}" alt="">
+                <img src="${playerInfo.photo}" alt="">
             </div>
-            <h2 class="z-10 font-medium text-sm translate-y-2">${nameInput.value}</h2>
+            <h2 class="z-10 font-medium text-sm translate-y-2">${playerInfo.name}</h2>
     
     `;
-    if(position.value == "gk"){
+    if(playerInfo.position == "gk"){
 
         benchCard.innerHTML+=`
         <div class="w-4/5 h-fit flex flex-row justify-center gap-1 translate-y-2">
-                <span class="text-vs font-medium text-center"><p class="text-center">HAN</p> <p class="text-center">${diving.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">HAN</p> <p class="text-center">${handling.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">KIC</p> <p class="text-center">${kicking.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">REF</p> <p class="text-center">${reflexes.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">SPD</p> <p class="text-center">${speed.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">POS</p> <p class="text-center">${positioning.value}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">HAN</p> <p class="text-center">${playerInfo.diving}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">HAN</p> <p class="text-center">${playerInfo.handling}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">KIC</p> <p class="text-center">${playerInfo.kicking}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">REF</p> <p class="text-center">${playerInfo.reflexes}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">SPD</p> <p class="text-center">${playerInfo.speed}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">POS</p> <p class="text-center">${playerInfo.positioning}</p></span>
             </div>
 
             <div class="flex flex-row gap-4 translate-y-2">
-                <img class="h-4 aspect-auto " src="${flags[nationality.value]}" alt="">
-                <img class="h-4 aspect-auto" src="${clubs[club.value]}" alt="">
+                <img class="h-4 aspect-auto " src="${flags[playerInfo.nationality]}" alt="">
+                <img class="h-4 aspect-auto" src="${clubs[playerInfo.club]}" alt="">
             </div>
         `;
     }else{
         benchCard.innerHTML +=`
         <div class="w-4/5 h-fit flex flex-row justify-center gap-1 translate-y-2">
-                <span class="text-vs font-medium text-center"><p class="text-center">PAC</p> <p class="text-center">${pace.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">SHO</p> <p class="text-center">${shooting.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">PAS</p> <p class="text-center">${passing.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">DRI</p> <p class="text-center">${dribbling.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">DEF</p> <p class="text-center">${defending.value}</p></span>
-                <span class="text-vs font-medium text-center"><p class="text-center">PHY</p> <p class="text-center">${physical.value}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">PAC</p> <p class="text-center">${playerInfo.pace}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">SHO</p> <p class="text-center">${playerInfo.shooting}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">PAS</p> <p class="text-center">${playerInfo.passing}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">DRI</p> <p class="text-center">${playerInfo.dribbling}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">DEF</p> <p class="text-center">${playerInfo.defending}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">PHY</p> <p class="text-center">${playerInfo.physical}</p></span>
             </div>
 
             <div class="flex flex-row gap-4 translate-y-2">
-                <img class="h-4 aspect-auto " src="${flags[nationality.value]}" alt="">
-                <img class="h-4 aspect-auto" src="${clubs[club.value]}" alt="">
+                <img class="h-4 aspect-auto " src="${flags[playerInfo.nationality]}" alt="">
+                <img class="h-4 aspect-auto" src="${clubs[playerInfo.club]}" alt="">
             </div>
-            
+            <button class = "absolute modifyBtn">modify</button>
+            <button class = "absolute bottom-8 deleteBtn">delete</button>
         `;
+        let modifyBtn = benchCard.querySelector('.modifyBtn');
+        let deleteBtn = benchCard.querySelector('.deleteBtn');
+
+        deleteBtn.addEventListener("click",()=>{
+            let array = playersArr[`${playerInfo.position}Array`];
+            let index = array.findIndex(player => player.id == playerInfo.id);
+            
+             deletePlayer(array,index);
+             
+             localStorage.setItem("players",JSON.stringify(playersArr));
+        })
+        
+        modifyBtn.addEventListener("click",()=>{
+
+            addPlayerBtn.classList.add("hidden");
+                updatePlayerBtn.classList.remove("hidden");
+                cancelUpdatePlayerBtn.classList.remove("hidden");
+
+                window.alert(`hello this is the id of the player : ${playerInfo.id}`);
+
+                goalKeeperInputs.classList.add("hidden");
+                playersInputs.classList.remove("hidden");
+
+                idInput.value = playerInfo.id;
+                nameInput.value = playerInfo.name;
+                photoInput.value = playerInfo.photo;
+                nationality.value = playerInfo.nationality;
+                position.value = playerInfo.position;
+                club.value = playerInfo.club;
+                rating.value = playerInfo.rating;
+                pace.value = playerInfo.pace;
+                shooting.value = playerInfo.shooting;
+                passing.value = playerInfo.passing;
+                dribbling.value = playerInfo.dribbling;
+                defending.value = playerInfo.defending;
+                physical.value = playerInfo.physical;
+        })
 
     }
+    
     benchSection.appendChild(benchCard);
 
     
 }
 
 let playerObj = {
-    id: idInput.value,
-    name : nameInput.value, 
-    photo : photoInput.value,
-    position : position.value,
-    nationality : nationality.value,
-    club : club.value,
-    rating : rating.value
+    id: playerInfo.id,
+    name : playerInfo.name, 
+    photo : playerInfo.photoInput,
+    position : playerInfo.position,
+    nationality : playerInfo.nationality,
+    club : playerInfo.club,
+    rating : playerInfo.rating
 }
 
-if (position.value == "gk"){
+if (playerInfo.position == "gk"){
     playerObj = {...playerObj,
-        diving : diving.value,
-        handling : handling.value,
-        kicking : kicking.value,
-        reflexes : reflexes.value,
-        speed : speed.value,
-        position : position.value,
+        diving : playerInfo.diving,
+        handling : playerInfo.handling,
+        kicking : playerInfo.kicking,
+        reflexes : playerInfo.reflexes,
+        speed : playerInfo.speed,
+        positioning : playerInfo.position,
         onField 
     } 
     
 }else{
     playerObj = {...playerObj,
-        pace : pace.value,
-        shooting : shooting.value,
-        passing : passing.value,
-        dribbling : dribbling.value,
-        defending : defending.value,
-        physical : physical.value,
+        pace : playerInfo.pace,
+        shooting : playerInfo.shooting,
+        passing : playerInfo.passing,
+        dribbling : playerInfo.dribbling,
+        defending : playerInfo.defending,
+        physical : playerInfo.physical,
         onField
     }
 }
