@@ -59,12 +59,16 @@ function resetInputs(){
     let allInputs = document.querySelectorAll('input, select');
 allInputs.forEach((input)=>{
     input.value="";
-    playersInputs.classList.add("hidden");
+})
+playersInputs.classList.add("hidden");
     goalKeeperInputs.classList.add("hidden");
     addPlayerBtn.classList.remove("hidden");
     updatePlayerBtn.classList.add("hidden");
     cancelUpdatePlayerBtn.classList.add("hidden");
-})
+}
+
+function deletePlayer(array,index){
+array.splice(index,1);
 }
 
 // -----------Declaring position of the players in the field--------
@@ -112,6 +116,7 @@ let cancelUpdatePlayerBtn = document.getElementById("cancel-update-player-btn");
 document.addEventListener("DOMContentLoaded", ()=>{
     if(JSON.parse(localStorage.getItem("players"))){
         playersArr = JSON.parse(localStorage.getItem("players"));
+        positionValability = JSON.parse(localStorage.getItem("positionValability"));
         console.log(playersArr);
         window.alert("rah kaaaaaaaaaayn dak tableau alm3lem");
         let gkArray = playersArr.gkArray;
@@ -142,9 +147,21 @@ document.addEventListener("DOMContentLoaded", ()=>{
                 <img class="h-4 aspect-auto " src="${flags[gkArray[gkOnField].nationality]}" alt="">
                 <img class="h-4 aspect-auto" src="${clubs[gkArray[gkOnField].club]}" alt="">
             </div>
-            <button class = "absolute modifyBtn">modify
-            </button>
+            <button class = "absolute modifyBtn">modify</button>
+            <button class = "absolute bottom-8 deleteBtn">delete</button>
+            
         `
+        let deleteBtn = goalKeeperPos.querySelector(".deleteBtn");
+        deleteBtn.addEventListener('click',()=>{
+            if (gkArray[gkOnField].onField == true){
+                positionValability[gkArray[gkOnField].position] = "free";
+            }
+            deletePlayer(gkArray, gkOnField);
+
+            localStorage.setItem("players",JSON.stringify(playersArr));
+            localStorage.setItem("positionValability",JSON.stringify(positionValability));
+        })
+
         let modifyBtn = goalKeeperPos.querySelector(".modifyBtn");
         modifyBtn.addEventListener('click',()=>{
             addPlayerBtn.classList.add("hidden");
@@ -216,9 +233,21 @@ document.addEventListener("DOMContentLoaded", ()=>{
                 <img class="h-4 aspect-auto" src="${clubs[array[playerIndex].club]}" alt="">
             </div>
 
-            <button class = "absolute modifyBtn">modify
-            </button>
+            <button class = "absolute modifyBtn">modify</button>
+            <button class = "absolute bottom-8 deleteBtn">delete</button>
+            
         `
+        let deleteBtn = element.querySelector(".deleteBtn");
+        deleteBtn.addEventListener('click',()=>{
+            if (array[playerIndex].onField == true){
+                positionValability[array[playerIndex].position] = "free";
+            }
+            deletePlayer(array, playerIndex);
+
+            localStorage.setItem("players",JSON.stringify(playersArr));
+            localStorage.setItem("positionValability",JSON.stringify(positionValability));
+        })
+
         let modifyBtn = element.querySelector(".modifyBtn");
             modifyBtn.addEventListener('click',()=>{
                 addPlayerBtn.classList.add("hidden");
@@ -559,4 +588,6 @@ updatePlayerBtn.addEventListener("click",()=>{
 })
 
 cancelUpdatePlayerBtn.addEventListener("click",resetInputs);
+
+
 
