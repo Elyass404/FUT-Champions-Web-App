@@ -61,6 +61,9 @@ allInputs.forEach((input)=>{
     input.value="";
     playersInputs.classList.add("hidden");
     goalKeeperInputs.classList.add("hidden");
+    addPlayerBtn.classList.remove("hidden");
+    updatePlayerBtn.classList.add("hidden");
+    cancelUpdatePlayerBtn.classList.add("hidden");
 })
 }
 
@@ -317,8 +320,6 @@ addPlayerBtn.addEventListener("click",()=>{
                 <img class="h-4 aspect-auto" src="${clubs[club.value]}" alt="">
             </div>
 
-            
-            
         `;
 
     }
@@ -426,12 +427,6 @@ playersArr[playersArr[`${position.value}Array`].push(playerObj)];
 console.log(playersArr[`${position.value}Array`]);
 localStorage.setItem("players",JSON.stringify(playersArr));
 localStorage.setItem("positionValability",JSON.stringify(positionValability));
-
-
-
-
-
-
 
 
 // To reset all the inputs of the form 
@@ -562,4 +557,6 @@ updatePlayerBtn.addEventListener("click",()=>{
 
 
 })
+
+cancelUpdatePlayerBtn.addEventListener("click",resetInputs);
 
