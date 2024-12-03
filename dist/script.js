@@ -224,11 +224,11 @@ document.addEventListener("DOMContentLoaded", ()=>{
                 <div class="text-center text-xs font-medium">${gkArray[gkOnField].position.toUpperCase()}</div>
             </div>
 
-    <div class="translate-y-4 w-3/5 aspect-auto">
+    <div class="translate-y-4 w-3/5 aspect-auto justify-center">
                 <img src="${gkArray[gkOnField].photo}" alt="">
             </div>
-            <h2 class="z-10 font-medium text-sm">${gkArray[gkOnField].name}</h2>
-            <div class="w-4/5 h-fit flex flex-row gap-1">
+            <h2 class="z-10 font-medium text-sm justify-center text-center">${gkArray[gkOnField].name}</h2>
+            <div class="w-4/5 h-fit flex flex-row justify-center gap-1">
                 <span class="text-vs font-medium text-center"><p class="text-center">DIV</p> <p class="text-center">${gkArray[gkOnField].diving}</p></span>
                 <span class="text-vs font-medium text-center"><p class="text-center">HAN</p> <p class="text-center">${gkArray[gkOnField].handling}</p></span>
                 <span class="text-vs font-medium text-center"><p class="text-center">KIC</p> <p class="text-center">${gkArray[gkOnField].kicking}</p></span>
@@ -237,7 +237,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
                 <span class="text-vs font-medium text-center"><p class="text-center">POS</p> <p class="text-center">${gkArray[gkOnField].positioning}</p></span>
             </div>
 
-            <div class="flex flex-row gap-4">
+            <div class="flex flex-row gap-4 justify-center">
                 <img class="h-4 aspect-auto " src="${flags[gkArray[gkOnField].nationality]}" alt="">
                 <img class="h-4 aspect-auto" src="${clubs[gkArray[gkOnField].club]}" alt="">
             </div>
@@ -310,11 +310,11 @@ document.addEventListener("DOMContentLoaded", ()=>{
                 <div class="text-center text-xs font-medium">${array[playerIndex].position.toUpperCase()}</div>
             </div>
 
-    <div class="translate-y-4 w-3/5 aspect-auto">
+    <div class="translate-y-4 w-3/5 aspect-auto justify-center">
                 <img src="${array[playerIndex].photo}" alt="">
             </div>
-            <h2 class="z-10 font-medium text-sm">${array[playerIndex].name}</h2>
-            <div class="w-4/5 h-fit flex flex-row gap-1">
+            <h2 class="z-10 font-medium text-sm justify-center text-center">${array[playerIndex].name}</h2>
+            <div class="w-4/5 h-fit flex flex-row justify-center gap-1">
                 <span class="text-vs font-medium text-center"><p class="text-center">PAC</p> <p class="text-center">${array[playerIndex].pace}</p></span>
                 <span class="text-vs font-medium text-center"><p class="text-center">SHO</p> <p class="text-center">${array[playerIndex].shooting}</p></span>
                 <span class="text-vs font-medium text-center"><p class="text-center">PAS</p> <p class="text-center">${array[playerIndex].passing}</p></span>
@@ -435,13 +435,13 @@ addPlayerBtn.addEventListener("click",()=>{
     <div class="translate-y-4 w-3/5 aspect-auto">
                 <img src="${playerInfo.photo}" alt="">
             </div>
-            <h2 class="z-10 font-medium text-sm">${playerInfo.name}</h2>
+            <h2 class="z-10 font-medium text-sm justify-center text-center">${playerInfo.name}</h2>
             
     `
     if(position.value == "gk"){
 
         playerCard+=`
-        <div class="w-4/5 h-fit flex flex-row gap-1">
+        <div class="w-4/5 h-fit flex flex-row gap-1 ">
                 <span class="text-vs font-medium text-center"><p class="text-center">DIV</p> <p class="text-center">${playerInfo.diving}</p></span>
                 <span class="text-vs font-medium text-center"><p class="text-center">HAN</p> <p class="text-center">${playerInfo.handling}</p></span>
                 <span class="text-vs font-medium text-center"><p class="text-center">KIC</p> <p class="text-center">${playerInfo.kicking}</p></span>
@@ -454,6 +454,8 @@ addPlayerBtn.addEventListener("click",()=>{
                 <img class="h-4 aspect-auto " src="${flags[playerInfo.nationality]}" alt="">
                 <img class="h-4 aspect-auto" src="${clubs[playerInfo.club]}" alt="">
             </div>
+            <button class = "absolute  right-4 top-8 modifyBtn"><i class="text-blue-600 fa-solid fa-pen-to-square"></i></button>
+            <button class = "absolute right-4 top-14 deleteBtn"><i class="fa-solid fa-trash text-red-600"></i></button>
         `;
     }else{
         playerCard+=`
@@ -473,7 +475,6 @@ addPlayerBtn.addEventListener("click",()=>{
             <button class = "absolute  right-4 top-8 modifyBtn"><i class="text-blue-600 fa-solid fa-pen-to-square"></i></button>
             <button class = "absolute right-4 top-14 deleteBtn"><i class="fa-solid fa-trash text-red-600"></i></button>
         `;
-
     }
 
     let positionValue = playerInfo.position;
@@ -481,6 +482,44 @@ addPlayerBtn.addEventListener("click",()=>{
     let onField = false;
     if(positionValability[playerInfo.position] == "free"){
         placeOfPlayer.innerHTML = playerCard;
+        let modifyBtn = placeOfPlayer.querySelector('.modifyBtn');
+        let deleteBtn = placeOfPlayer.querySelector('.deleteBtn');
+
+        deleteBtn.addEventListener("click",()=>{
+            let array = playersArr[`${playerInfo.position}Array`];
+            let index = array.findIndex(player => player.id == playerInfo.id);
+            
+             deletePlayer(array,index);
+
+             localStorage.setItem("players",JSON.stringify(playersArr));
+             location.reload();
+        })
+        
+        modifyBtn.addEventListener("click",()=>{
+
+            addPlayerBtn.classList.add("hidden");
+                updatePlayerBtn.classList.remove("hidden");
+                cancelUpdatePlayerBtn.classList.remove("hidden");
+
+                window.alert(`hello this is the id of the player : ${playerInfo.id}`);
+
+                goalKeeperInputs.classList.add("hidden");
+                playersInputs.classList.remove("hidden");
+
+                idInput.value = playerInfo.id;
+                nameInput.value = playerInfo.name;
+                photoInput.value = playerInfo.photo;
+                nationality.value = playerInfo.nationality;
+                position.value = playerInfo.position;
+                club.value = playerInfo.club;
+                rating.value = playerInfo.rating;
+                pace.value = playerInfo.pace;
+                shooting.value = playerInfo.shooting;
+                passing.value = playerInfo.passing;
+                dribbling.value = playerInfo.dribbling;
+                defending.value = playerInfo.defending;
+                physical.value = playerInfo.physical;
+        })
         positionValability[playerInfo.position] = "full";
         onField = true;
     }else{
