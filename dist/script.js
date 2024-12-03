@@ -212,7 +212,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
         playersArr = JSON.parse(localStorage.getItem("players"));
         positionValability = JSON.parse(localStorage.getItem("positionValability"));
         console.log(playersArr);
-        window.alert("rah kaaaaaaaaaayn dak tableau alm3lem");
         let gkArray = playersArr.gkArray;
         let gkOnField = gkArray.findIndex(gk => gk.onField==true);
         
@@ -302,7 +301,9 @@ document.addEventListener("DOMContentLoaded", ()=>{
            
             let element = positions[post].element;
             let array = positions[post].array;
+
             let playerIndex = array.findIndex(player => player.onField == true);
+        
             if (playerIndex > -1) {
                 element.innerHTML =`
         <div class="absolute top-8 left-5 flex flex-col gap-0">
@@ -350,7 +351,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
                 updatePlayerBtn.classList.remove("hidden");
                 cancelUpdatePlayerBtn.classList.remove("hidden");
 
-                window.alert(`hello this is the id of the player : ${array[playerIndex].id}`);
+                window.alert(`hello, this is the id of the player : ${array[playerIndex].id}`);
 
                 goalKeeperInputs.classList.add("hidden");
                 playersInputs.classList.remove("hidden");
@@ -374,9 +375,9 @@ document.addEventListener("DOMContentLoaded", ()=>{
             
         }
 
-    }else{
-        window.alert("rah makaynch dak tableau alm3lem");
         
+
+    }else{
         let gkArray = [];
         let rbArray = [];
         let rcbArray = [];
@@ -709,8 +710,6 @@ localStorage.setItem("positionValability",JSON.stringify(positionValability));
 
 // To reset all the inputs of the form 
 resetInputs();
-}else {
-    alert('Please fix the errors in the form.');
 }
 })
 
@@ -740,6 +739,7 @@ updatePlayerBtn.addEventListener("click",()=>{
 
    for(let post in playersArr){
     let index = playersArr[post].findIndex(player => player.id == idInput.value);
+    console.log("==========",post);
     if (index > -1){
         array = playersArr[post];
         playerIndex = index ;
@@ -845,9 +845,3 @@ updatePlayerBtn.addEventListener("click",()=>{
 
 cancelUpdatePlayerBtn.addEventListener("click",resetInputs);
 
-
-
-
-
-// playersArr = JSON.parse(localStorage.getItem("players"));
-// positionValability = JSON.parse(localStorage.getItem("positionValability"));
