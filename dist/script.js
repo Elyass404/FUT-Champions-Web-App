@@ -219,7 +219,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         if(gkOnField > -1){
             goalKeeperPos.innerHTML =`
         <div class="absolute top-8 left-5 flex flex-col gap-0">
-                <div class="text-center text-xl font-bold">${gkArray[gkOnField].rating}</div>
+                <div  class="text-center text-xl font-bold">${gkArray[gkOnField].rating}</div>
                 <div class="text-center text-xs font-medium">${gkArray[gkOnField].position.toUpperCase()}</div>
             </div>
 
@@ -845,3 +845,15 @@ updatePlayerBtn.addEventListener("click",()=>{
 
 cancelUpdatePlayerBtn.addEventListener("click",resetInputs);
 
+
+
+
+
+
+
+
+let rates = document.querySelectorAll("#players-cards .relative .absolute .text-xl");
+// rates.forEach(rate => {
+    
+// });
+console.log(rates);
