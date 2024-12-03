@@ -488,10 +488,14 @@ addPlayerBtn.addEventListener("click",()=>{
         deleteBtn.addEventListener("click",()=>{
             let array = playersArr[`${playerInfo.position}Array`];
             let index = array.findIndex(player => player.id == playerInfo.id);
-            
+
+            if (array[index].onField == true){
+                positionValability[array[index].position] = "free";
+            }
              deletePlayer(array,index);
 
              localStorage.setItem("players",JSON.stringify(playersArr));
+             localStorage.setItem("positionValability",JSON.stringify(positionValability));
              location.reload();
         })
         
@@ -569,6 +573,7 @@ addPlayerBtn.addEventListener("click",()=>{
              deletePlayer(array,index);
 
              localStorage.setItem("players",JSON.stringify(playersArr));
+             localStorage.setItem("positionValability",JSON.stringify(positionValability));
              location.reload();
         })
         
@@ -625,6 +630,7 @@ addPlayerBtn.addEventListener("click",()=>{
              deletePlayer(array,index);
 
              localStorage.setItem("players",JSON.stringify(playersArr));
+             localStorage.setItem("positionValability",JSON.stringify(positionValability));
              location.reload();
         })
         
@@ -841,3 +847,7 @@ cancelUpdatePlayerBtn.addEventListener("click",resetInputs);
 
 
 
+
+
+// playersArr = JSON.parse(localStorage.getItem("players"));
+// positionValability = JSON.parse(localStorage.getItem("positionValability"));
