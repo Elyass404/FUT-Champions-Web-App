@@ -71,6 +71,100 @@ function deletePlayer(array,index){
 array.splice(index,1);
 }
 
+function formValidator(){
+    // Regex patterns for validation
+let regexPatterns = {
+    nameRgx: /^[A-Za-z\s]{2,}$/,
+    photoRgx: /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif))$/,  
+    numbersRgx: /^(10|[1-9][0-9])$/ 
+};
+
+    let formPassed = true;
+
+    // Validate Name
+    let name = nameInput.value;
+    if (!regexPatterns.nameRgx.test(name)) {
+        document.getElementById('name-error').classList.remove('hidden');
+        formPassed = false;
+    } else {
+        document.getElementById('name-error').classList.add('hidden');
+    }
+
+    // Validate Photo URL
+    let photo = photoInput.value;
+    if (!regexPatterns.photoRgx.test(photo)) {
+        document.getElementById('photo-error').classList.remove('hidden');
+        formPassed = false;
+    } else {
+        document.getElementById('photo-error').classList.add('hidden');
+    }
+
+    // Validate Position
+    let positionInput = position.value;
+    if (!positionInput) {
+        document.getElementById('position-error').classList.remove('hidden');
+        formPassed = false;
+    } else {
+        document.getElementById('position-error').classList.add('hidden');
+    }
+
+    // Validate Nationality
+    let nationalityInput = nationality.value;
+    if (!nationalityInput) {
+        document.getElementById('nationality-error').classList.remove('hidden');
+        formPassed = false;
+    } else {
+        document.getElementById('nationality-error').classList.add('hidden');
+    }
+
+    // Validate Club
+    let clubInput = club.value;
+    if (!clubInput) {
+        document.getElementById('club-error').classList.remove('hidden');
+        formPassed = false;
+    } else {
+        document.getElementById('club-error').classList.add('hidden');
+    }
+
+    // Validate Rating
+    let ratingInput = rating.value;
+    if (!regexPatterns.numbersRgx.test(ratingInput)) {
+        document.getElementById('rating-error').classList.remove('hidden');
+        formPassed = false;
+    } else {
+        document.getElementById('rating-error').classList.add('hidden');
+    }
+
+    if(position.value == "gk"){
+    let postsArray = [diving, handling, kicking, reflexes, positioning, speed];
+    let postsArrayString = ["diving", "handling", "kicking", "reflexes", "positioning", "speed"];
+    postsArray.forEach(input => {
+        let value = input.value;
+        if (!regexPatterns.numbersRgx.test(value)) {
+            document.getElementById(`${postsArrayString[postsArray.indexOf(input)]}-error`).classList.remove('hidden');
+            formPassed = false;
+        } else {
+            document.getElementById(`${postsArrayString[postsArray.indexOf(input)]}-error`).classList.add('hidden');
+        }
+    });
+    }else{
+    
+    let postsArray = [pace, shooting, dribbling, passing, defending, physical];
+    let postsArrayString = ["pace", "shooting", "dribbling", "passing", "defending", "physical"];
+    postsArray.forEach(input => {
+        let value = input.value;
+        if (!regexPatterns.numbersRgx.test(value)) {
+            document.getElementById(`${postsArrayString[postsArray.indexOf(input)]}-error`).classList.remove('hidden');
+            formPassed = false;
+        } else {
+            document.getElementById(`${postsArrayString[postsArray.indexOf(input)]}-error`).classList.add('hidden');
+        }
+    });
+}
+    return formPassed;
+
+}
+
 // -----------Declaring position of the players in the field--------
 let goalKeeperPos = document.getElementById("goal-keeper");
 let leftCenterBackPos = document.getElementById("left-center-back");
@@ -147,8 +241,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
                 <img class="h-4 aspect-auto " src="${flags[gkArray[gkOnField].nationality]}" alt="">
                 <img class="h-4 aspect-auto" src="${clubs[gkArray[gkOnField].club]}" alt="">
             </div>
-            <button class = "absolute modifyBtn">modify</button>
-            <button class = "absolute bottom-8 deleteBtn">delete</button>
+            <button class = "absolute  right-4 top-8 modifyBtn"><i class="text-blue-600 fa-solid fa-pen-to-square"></i></button>
+            <button class = "absolute right-4 top-14 deleteBtn"><i class="fa-solid fa-trash text-red-600"></i></button>
             
         `
         let deleteBtn = goalKeeperPos.querySelector(".deleteBtn");
@@ -160,6 +254,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
             localStorage.setItem("players",JSON.stringify(playersArr));
             localStorage.setItem("positionValability",JSON.stringify(positionValability));
+            location.reload();
         })
 
         let modifyBtn = goalKeeperPos.querySelector(".modifyBtn");
@@ -233,8 +328,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
                 <img class="h-4 aspect-auto" src="${clubs[array[playerIndex].club]}" alt="">
             </div>
 
-            <button class = "absolute modifyBtn">modify</button>
-            <button class = "absolute bottom-8 deleteBtn">delete</button>
+            <button class = "absolute  right-4 top-8 modifyBtn"><i class="text-blue-600 fa-solid fa-pen-to-square"></i></button>
+            <button class = "absolute right-4 top-14 deleteBtn"><i class="fa-solid fa-trash text-red-600"></i></button>
             
         `
         let deleteBtn = element.querySelector(".deleteBtn");
@@ -246,6 +341,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
             localStorage.setItem("players",JSON.stringify(playersArr));
             localStorage.setItem("positionValability",JSON.stringify(positionValability));
+            location.reload();
         })
 
         let modifyBtn = element.querySelector(".modifyBtn");
@@ -303,6 +399,10 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
 // ---------Add event listeners to elements inside the document----------
 addPlayerBtn.addEventListener("click",()=>{
+    if (formValidator()) {
+        
+        
+    
     idInput.value = Date.now().toString();
     playerInfo = {
         id: idInput.value,
@@ -370,7 +470,8 @@ addPlayerBtn.addEventListener("click",()=>{
                 <img class="h-4 aspect-auto " src="${flags[playerInfo.nationality]}" alt="">
                 <img class="h-4 aspect-auto" src="${clubs[playerInfo.club]}" alt="">
             </div>
-
+            <button class = "absolute  right-4 top-8 modifyBtn"><i class="text-blue-600 fa-solid fa-pen-to-square"></i></button>
+            <button class = "absolute right-4 top-14 deleteBtn"><i class="fa-solid fa-trash text-red-600"></i></button>
         `;
 
     }
@@ -403,7 +504,7 @@ addPlayerBtn.addEventListener("click",()=>{
 
         benchCard.innerHTML+=`
         <div class="w-4/5 h-fit flex flex-row justify-center gap-1 translate-y-2">
-                <span class="text-vs font-medium text-center"><p class="text-center">HAN</p> <p class="text-center">${playerInfo.diving}</p></span>
+                <span class="text-vs font-medium text-center"><p class="text-center">DIV</p> <p class="text-center">${playerInfo.diving}</p></span>
                 <span class="text-vs font-medium text-center"><p class="text-center">HAN</p> <p class="text-center">${playerInfo.handling}</p></span>
                 <span class="text-vs font-medium text-center"><p class="text-center">KIC</p> <p class="text-center">${playerInfo.kicking}</p></span>
                 <span class="text-vs font-medium text-center"><p class="text-center">REF</p> <p class="text-center">${playerInfo.reflexes}</p></span>
@@ -415,7 +516,48 @@ addPlayerBtn.addEventListener("click",()=>{
                 <img class="h-4 aspect-auto " src="${flags[playerInfo.nationality]}" alt="">
                 <img class="h-4 aspect-auto" src="${clubs[playerInfo.club]}" alt="">
             </div>
+            <button class = "absolute  right-4 top-6 modifyBtn"><i class="text-blue-600 fa-solid fa-pen-to-square"></i></button>
+            <button class = "absolute right-4 top-12 deleteBtn"><i class="fa-solid fa-trash text-red-600"></i></button>
         `;
+
+        let modifyBtn = benchCard.querySelector('.modifyBtn');
+        let deleteBtn = benchCard.querySelector('.deleteBtn');
+
+        deleteBtn.addEventListener("click",()=>{
+            let array = playersArr[`${playerInfo.position}Array`];
+            let index = array.findIndex(player => player.id == playerInfo.id);
+            
+             deletePlayer(array,index);
+
+             localStorage.setItem("players",JSON.stringify(playersArr));
+             location.reload();
+        })
+        
+        modifyBtn.addEventListener("click",()=>{
+
+            addPlayerBtn.classList.add("hidden");
+                updatePlayerBtn.classList.remove("hidden");
+                cancelUpdatePlayerBtn.classList.remove("hidden");
+
+                window.alert(`hello this is the id of the player : ${playerInfo.id}`);
+
+                goalKeeperInputs.classList.remove("hidden");
+                playersInputs.classList.add("hidden");
+
+                idInput.value = playerInfo.id;
+                nameInput.value = playerInfo.name;
+                photoInput.value = playerInfo.photo;
+                nationality.value = playerInfo.nationality;
+                position.value = playerInfo.position;
+                club.value = playerInfo.club;
+                rating.value = playerInfo.rating;
+                diving.value = playerInfo.diving;
+                handling.value = playerInfo.handling;
+                kicking.value = playerInfo.kicking;
+                reflexes.value = playerInfo.reflexes;
+                speed.value = playerInfo.speed;
+                positioning.value = playerInfo.positioning;
+        })
     }else{
         benchCard.innerHTML +=`
         <div class="w-4/5 h-fit flex flex-row justify-center gap-1 translate-y-2">
@@ -431,8 +573,8 @@ addPlayerBtn.addEventListener("click",()=>{
                 <img class="h-4 aspect-auto " src="${flags[playerInfo.nationality]}" alt="">
                 <img class="h-4 aspect-auto" src="${clubs[playerInfo.club]}" alt="">
             </div>
-            <button class = "absolute modifyBtn">modify</button>
-            <button class = "absolute bottom-8 deleteBtn">delete</button>
+            <button class = "absolute  right-4 top-6 modifyBtn"><i class="text-blue-600 fa-solid fa-pen-to-square"></i></button>
+            <button class = "absolute right-4 top-12 deleteBtn"><i class="fa-solid fa-trash text-red-600"></i></button>
         `;
         let modifyBtn = benchCard.querySelector('.modifyBtn');
         let deleteBtn = benchCard.querySelector('.deleteBtn');
@@ -442,8 +584,9 @@ addPlayerBtn.addEventListener("click",()=>{
             let index = array.findIndex(player => player.id == playerInfo.id);
             
              deletePlayer(array,index);
-             
+
              localStorage.setItem("players",JSON.stringify(playersArr));
+             location.reload();
         })
         
         modifyBtn.addEventListener("click",()=>{
@@ -482,7 +625,7 @@ addPlayerBtn.addEventListener("click",()=>{
 let playerObj = {
     id: playerInfo.id,
     name : playerInfo.name, 
-    photo : playerInfo.photoInput,
+    photo : playerInfo.photo,
     position : playerInfo.position,
     nationality : playerInfo.nationality,
     club : playerInfo.club,
@@ -521,7 +664,9 @@ localStorage.setItem("positionValability",JSON.stringify(positionValability));
 
 // To reset all the inputs of the form 
 resetInputs();
-
+}else {
+    alert('Please fix the errors in the form.');
+}
 })
 
 position.addEventListener('change',()=>{
@@ -538,6 +683,7 @@ position.addEventListener('change',()=>{
 
 
 updatePlayerBtn.addEventListener("click",()=>{
+    if (formValidator()) {
    let playersArr= JSON.parse(localStorage.getItem("players"));
    let positionValability= JSON.parse(localStorage.getItem("positionValability"));
    console.log("this is the result of clicking the update button")
@@ -643,8 +789,12 @@ updatePlayerBtn.addEventListener("click",()=>{
 
    localStorage.setItem("players",JSON.stringify(playersArr));
    localStorage.setItem("positionValability",JSON.stringify(positionValability));
-   resetInputs();
+   location.reload();
+   
 
+}else {
+    alert('Please fix the errors in the form.');
+}
 
 })
 

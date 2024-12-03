@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FUT Champions</title>
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.6.0/css/all.css">
     <link rel="stylesheet" href="output.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -67,11 +68,13 @@
         <div id="name-input" class="flex flex-col gap-1">
             <label for="player-name" class="text-base font-medium">Full Name</label>
             <input  type="text" id="player-name-input" class="input-colors input-colors rounded py-2 px-3 ">
+            <span id="name-error" class="text-red-600 text-sm hidden"><i class="fa-solid fa-diamond-exclamation"></i> Name must be at least 2 letters and no digits.</span>
         </div>
         
         <div id="photo-input" class="flex flex-col gap-1">
             <label for="player-photo" class="text-base font-medium">Photo</label>
             <input type="text" id="player-photo" class=" input-colors rounded py-2 px-3">
+            <span id="photo-error" class="text-red-600 text-sm hidden"><i class="fa-solid fa-diamond-exclamation"></i> Photo must be a valid URL with a CDN image.</span>
         </div>
 
         <div id="position-input" class="flex flex-col gap-1 w-xl">
@@ -90,6 +93,7 @@
                 <option value="st">Striker</option>
                 <option value="lw">Left Wing</option>
             </select>
+            <span id="position-error" class="text-red-600 text-sm hidden"><i class="fa-solid fa-diamond-exclamation"></i> Please select a position.</span>
         </div>
         
         <div id="nationality-input" class="flex flex-col gap-1">
@@ -101,6 +105,7 @@
                 <option value="bra">Brazil</option>
                 <option value="por">Portugal</option>
             </select>
+            <span id="nationality-error" class="text-red-600 text-sm hidden"><i class="fa-solid fa-diamond-exclamation"></i> Please select a nationality.</span>
         </div>
         
         <div id="current-club-input" class="flex flex-col gap-1">
@@ -113,11 +118,14 @@
                 <option value="bay">Bayern Munich</option>
                 <option value="mia">Inter Miami</option>
             </select>
+            <span id="club-error" class="text-red-600 text-sm hidden"><i class="fa-solid fa-diamond-exclamation"></i> Please select a club.</span>
         </div>
+        
         
         <div id="rating-input" class="flex flex-col gap-1">
             <label for="rating" class="text-base font-medium">Rating</label>
             <input type="number" id="rating" class="input-colors rounded py-2 px-3">
+            <span id="rating-error" class="text-red-600 text-sm hidden"><i class="fa-solid fa-diamond-exclamation"></i> Rating must be between 10 and 99.</span>
         </div>
 
 
@@ -128,11 +136,13 @@
         <div id="pace-input" class="w-1/2 flex flex-col gap-1">
             <label for="pace" class="text-base font-medium">Pace</label>
             <input type="number" id="pace" class="input-colors rounded py-2 px-3">
+            <span id="pace-error" class="text-red-600 text-sm hidden"><i class="fa-solid fa-diamond-exclamation"></i> Value must be between 10 and 99.</span>
         </div>
         
         <div id="shooting-input" class="w-1/2 flex flex-col gap-1">
             <label for="shooting" class="text-base font-medium">Shooting</label>
             <input type="number" id="shooting" class="input-colors rounded py-2 px-3">
+            <span id="shooting-error" class="text-red-600 text-sm hidden"><i class="fa-solid fa-diamond-exclamation"></i> Value must be between 10 and 99.</span>
         </div>
     </div>
     <div class=" max-w-full flex flex-row gap-2" >
@@ -140,22 +150,26 @@
         <div id="passing-input" class="w-1/2 flex flex-col gap-1">
             <label for="passing" class="text-base font-medium">Passing</label>
             <input type="number" id="passing" class="input-colors rounded py-2 px-3">
+            <span id="passing-error" class="text-red-600 text-sm hidden"><i class="fa-solid fa-diamond-exclamation"></i> Value must be between 10 and 99.</span>
         </div>
         
         <div id="dribbling-input" class="w-1/2 flex flex-col gap-1">
             <label for="dribbling" class="text-base font-medium">Dribbling</label>
             <input type="number" id="dribbling" class="input-colors rounded py-2 px-3">
+            <span id="dribbling-error" class="text-red-600 text-sm hidden"><i class="fa-solid fa-diamond-exclamation"></i> Value must be between 10 and 99.</span>
         </div>
     </div>
     <div class=" max-w-full flex flex-row gap-2" >
         <div id="defending-input" class="w-1/2 flex flex-col gap-1">
             <label for="defending" class="text-base font-medium">Defending</label>
             <input type="number" id="defending" class="input-colors rounded py-2 px-3">
+            <span id="defending-error" class="text-red-600 text-sm hidden"><i class="fa-solid fa-diamond-exclamation"></i> Value must be between 10 and 99.</span>
         </div>
         
         <div id="physical-input" class="w-1/2 flex flex-col gap-1">
             <label for="physical" class="text-base font-medium">Physical</label>
             <input type="number" id="physical" class="input-colors rounded py-2 px-3">
+            <span id="physical-error" class="text-red-600 text-sm hidden"><i class="fa-solid fa-diamond-exclamation"></i> Value must be between 10 and 99.</span>
         </div>
     </div>
     </div>
@@ -166,11 +180,13 @@
         <div id="diving-input" class="w-1/2 flex flex-col gap-1">
             <label for="diving" class="text-base font-medium">Diving</label>
             <input type="number" id="diving" class="input-colors rounded py-2 px-3">
+            <span id="diving-error" class="text-red-600 text-sm hidden"><i class="fa-solid fa-diamond-exclamation"></i> Value must be between 10 and 99.</span>
         </div>
         
         <div id="handling-input" class="w-1/2 flex flex-col gap-1">
             <label for="handling" class="text-base font-medium">Handling</label>
             <input type="number" id="handling" class="input-colors rounded py-2 px-3">
+            <span id="handling-error" class="text-red-600 text-sm hidden"><i class="fa-solid fa-diamond-exclamation"></i> Value must be between 10 and 99.</span>
         </div>
 
         </div>
@@ -180,11 +196,13 @@
         <div id="kicking-input" class="w-1/2 flex flex-col gap-1">
             <label for="kicking" class="text-base font-medium">Kicking</label>
             <input type="number" id="kicking" class="input-colors rounded py-2 px-3">
+            <span id="kicking-error" class="text-red-600 text-sm hidden"><i class="fa-solid fa-diamond-exclamation"></i> Value must be between 10 and 99.</span>
         </div>
         
         <div id="reflexes-input" class="w-1/2 flex flex-col gap-1">
             <label for="reflexes" class="text-base font-medium">Reflexes</label>
             <input type="number" id="reflexes" class="input-colors rounded py-2 px-3">
+            <span id="reflexes-error" class="text-red-600 text-sm hidden"><i class="fa-solid fa-diamond-exclamation"></i> Value must be between 10 and 99.</span>
         </div>
 
         </div>
@@ -193,11 +211,13 @@
         <div id="speed-input" class=" w-1/2 flex flex-col gap-1">
             <label for="speed" class="text-base font-medium">Speed</label>
             <input type="number" id="speed" class="input-colors rounded py-2 px-3">
+            <span id="speed-error" class="text-red-600 text-sm hidden"><i class="fa-solid fa-diamond-exclamation"></i> Value must be between 10 and 99.</span>
         </div>
         
         <div id="positioning-input" class="w-1/2 flex flex-col gap-1">
             <label for="positioning" class="text-base font-medium">Positioning</label>
             <input type="number" id="positioning" class="input-colors rounded py-2 px-3">
+            <span id="positioning-error" class="text-red-600 text-sm hidden"><i class="fa-solid fa-diamond-exclamation"></i> Value must be between 10 and 99.</span>
         </div>  
 
         </div>
@@ -267,6 +287,8 @@
             <img class="h-4 aspect-auto " src="https://cdn.sofifa.net/flags/ar.png" alt="">
             <img class="h-4 aspect-auto" src="https://cdn.sofifa.net/meta/team/239235/120.png" alt="">
         </div>
+        <button class = "absolute  right-4 top-6 modifyBtn"><i class="text-blue-600 fa-solid fa-pen-to-square"></i></button>
+        <button class = "absolute right-4 top-12 deleteBtn"><i class="fa-solid fa-trash text-red-600"></i></button>
     </div>
 
 
